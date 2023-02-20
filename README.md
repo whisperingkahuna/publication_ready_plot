@@ -1,25 +1,24 @@
 # Publication ready plot
 
-`publication_ready_plot` is a MATLAB function for creating publication-ready plots for two timeseries. It sets the font size and type, adds a title and labels, includes a legend, and saves the plot in EPS and PNG formats.
+MATLAB provides a wide range of plotting functions. However, creating publication-quality plots can be a daunting task. This function `publication_ready_plot` generates publication-ready plots with customizable titles, labels, and legends.
+
+This version of the function is modified to handle multiple time series, with default settings for single time series.
 
 ## Usage
 
 ```matlab
-publication_ready_plot(x1, y, x2, z, x_label, y_label, title_str, legend1, legend2, file_name)
+function publication_ready_plot(x, y, x_label, y_label, title_str, legend_str, file_name)
 ```
 
 ## Input Arguments
 
-- `x1`: a vector of x-values for the first data series
-- `y`: a vector of y-values for the first data series
-- `x2`: a vector of x-values for the second data series
-- `z`: a vector of y-values for the second data series
-- `x_label`: a string specifying the x-axis label
-- `y_label`: a string specifying the y-axis label
-- `title_str`: a string specifying the plot title
-- `legend1`: a string specifying the label for the first data series in the legend
-- `legend2`: a string specifying the label for the second data series in the legend
-- `file_name`: a string specifying the file name for the saved plot
+- `x`: Required input for the x-axis values for all time-series as a cell array.
+- `y`: Required input for the y-axis values for all time-series as a cell array.
+- `x_label`: Required input for the label for x-axis.
+- `y_label`: Required input for the label for y-axis.
+- `title_str`: Required input for the title of the plot.
+- `legend_str`: Required input for the legend for all time-series as a cell array.
+- `file_name`: Required input for the file name to save the plot. The file will be saved in the current directory.
 
 ## Output
 
@@ -29,13 +28,15 @@ publication_ready_plot(x1, y, x2, z, x_label, y_label, title_str, legend1, legen
 
 ```matlab
 % Generate example data
-x1 = linspace(0, 10, 100);
-y = sin(x1);
-x2 = linspace(0, 10, 50);
-z = cos(x2);
+t = linspace(0, 2*pi, 100);
+y1 = sin(t);
+y2 = cos(t);
+y3 = sin(2*t);
 
-% Call the function
-publication_ready_plot(x1, y, x2, z, 'X Label', 'Y Label', 'Example Plot', 'sin(x)', 'cos(x)', 'example_plot.eps');
+% Call function with multiple time series
+x = {t, t, t};
+y = {y1, y2, y3};
+publication_ready_plot(x, y, 'Time (s)', 'Amplitude', 'Example Plot', {'Series 1', 'Series 2', 'Series 3'}, 'example_plot');
 ```
 
 ## Customization
@@ -44,9 +45,8 @@ The function includes several parameters that can be customized to suit your nee
 
 - `set(groot, 'defaultAxesFontName', 'Times New Roman')` sets the font to Times New Roman.
 - `set(groot, 'defaultAxesFontSize', 12)` sets the font size to 12.
-- `plot(x1, y, 'LineWidth', 1.5)` sets the line width for the first data series to 1.5.
-- `plot(x2, z, '--', 'LineWidth', 1.5)` sets the line style to dashed and the line width for the second data series to 1.5.
-- `legend(legend1, legend2, 'Location', 'northwest')` sets the legend location to the northwest corner of the plot.
+- `plot(x{i}, y{i}, 'LineWidth', 1.5)`  sets the line width for the data series to 1.5.
+- `legend(legend_str, 'Location', 'best')`  sets the legend location to the best position based on the available space.
 - `grid on` turns on the grid.
 - `grid minor` turns on the minor grid.
 
