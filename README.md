@@ -1,4 +1,4 @@
-# publication_ready_plot
+# Publication ready plot
 
 `publication_ready_plot` is a MATLAB function for creating publication-ready plots. It sets the font size and type, adds a title and labels, includes a legend, and saves the plot in EPS and PNG formats.
 
