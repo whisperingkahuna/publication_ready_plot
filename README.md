@@ -52,8 +52,6 @@ The function includes several parameters that can be customized to suit your nee
 
 These parameters can be modified within the function code.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 
