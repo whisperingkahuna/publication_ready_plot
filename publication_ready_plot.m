@@ -1,4 +1,4 @@
-function publication_ready_plot_1(x, y, x_label, y_label, title_str, legend_str, file_name)
+function publication_ready_plot(x, y, x_label, y_label, title_str, legend_str, file_name)
 
 % Set font size and type
 set(groot, 'defaultAxesFontName', 'Times New Roman');
